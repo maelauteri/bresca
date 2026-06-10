@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#25564D">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Bresca — Sillans-la-Cascade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=9">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/img/logos/Logo_Bresca_Vert.png">
+</head>
+
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header" id="header">
+    <div class="header__logo-dept">
+      <img src="assets/img/logos/Logo_Département_Var_Blanc.png" alt="Département du Var" class="header__dept-img">
+    </div>
+    <a href="#" class="header__logo-bresca" id="btn-home">
+      <img src="assets/img/logos/Logo_Bresca_Blanc.png" alt="Bresca" class="header__bresca-img">
+    </a>
+    <button class="header__burger" id="btn-burger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- ==================== MENU BURGER ==================== -->
+  <div class="menu-overlay" id="menu-overlay">
+    <nav class="menu">
+      <button class="menu__close" id="btn-menu-close" aria-label="Fermer le menu">&times;</button>
+      <ul class="menu__list">
+        <li><button class="menu__item" id="menu-download">Télécharger les données</button></li>
+        <li>
+          <div class="menu__item menu__lang">
+            <span>Langue</span>
+            <div class="menu__lang-options">
+              <button class="menu__lang-btn active" data-lang="fr">🇫🇷</button>
+              <button class="menu__lang-btn" data-lang="en">🇬🇧</button>
+              <button class="menu__lang-btn" data-lang="de">🇩🇪</button>
+            </div>
+          </div>
+        </li>
+        <li><button class="menu__item" id="menu-profile">Changer de profil</button></li>
+        <li><button class="menu__item" id="menu-credits">Crédits</button></li>
+        <li><button class="menu__item" id="menu-privacy">Politique de confidentialité</button></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- ==================== PAGE ACCUEIL (ONBOARDING) ==================== -->
+  <section class="page page--welcome" id="page-welcome">
+    <div class="welcome">
+      <div class="welcome__top">
+        <img src="assets/img/logos/Logo_Bresca_Vert.png" alt="Bresca" class="welcome__logo">
+      </div>
+      <div class="welcome__glass">
+        <h2 class="welcome__title" data-i18n="welcome_title">Bienvenue sur Bresca !</h2>
+        <p class="welcome__text" data-i18n="welcome_text1">
+          Je suis <strong>Tuffy</strong>, ton guide qui t'accompagnera dans l'application
+        </p>
+        <p class="welcome__text" data-i18n="welcome_text2">
+          Je te conseille de <strong>télécharger les données</strong> afin de fluidifier ton expérience
+        </p>
+      </div>
+      <div class="welcome__mascotte-wrap">
+        <img src="assets/img/mascotte/mascotte_sourire.png" alt="Tuffy, la mascotte" class="welcome__mascotte">
+      </div>
+      <div class="welcome__bottom">
+        <button class="btn btn--primary btn--full" id="btn-download" data-i18n="btn_download">Télécharger les données</button>
+        <button class="btn btn--ghost-light" id="btn-skip-download" data-i18n="btn_skip">Continuer sans télécharger</button>
+        <div class="welcome__lang">
+          <button class="welcome__lang-btn active" data-lang="fr">🇫🇷</button>
+          <button class="welcome__lang-btn" data-lang="en">🇬🇧</button>
+          <button class="welcome__lang-btn" data-lang="de">🇩🇪</button>
+        </div>
+        <div class="welcome__dept">
+          <img src="assets/img/logos/Logo_Département_Var_Noir.png" alt="Département du Var" class="welcome__dept-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE ERREUR (PAS DE DONNÉES) ==================== -->
+  <section class="page page--nodata hidden" id="page-nodata">
+    <div class="nodata">
+      <img src="assets/img/mascotte/mascotte_triste.png" alt="Tuffy triste" class="nodata__mascotte">
+      <h2 class="nodata__title" data-i18n="nodata_title">Données non téléchargées</h2>
+      <p class="nodata__text" data-i18n="nodata_text">Les données n'ont pas été téléchargées. Pour profiter pleinement de l'expérience, télécharge les données.</p>
+      <div class="nodata__buttons">
+        <button class="btn btn--primary btn--full" id="btn-nodata-download" data-i18n="btn_download">Télécharger les données</button>
+        <button class="btn btn--ghost-dark" id="btn-nodata-close" data-i18n="nodata_close">Fermer</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE PROFIL ==================== -->
+  <section class="page page--profile hidden" id="page-profile">
+    <div class="profile">
+      <div class="profile__mascot-speech">
+        <img src="assets/img/mascotte/mascotte_sourire.png" alt="Tuffy" class="profile__mascot-img">
+        <div class="profile__speech-bubble">
+          <h2 class="profile__title" data-i18n="profile_title">Quelle aventure souhaitez-vous vivre aujourd'hui ?</h2>
+          <p class="profile__subtitle" data-i18n="profile_subtitle">Choisis ton profil pour personnaliser ta visite. Pas de panique, tu pourras le changer quand tu veux !</p>
+        </div>
+      </div>
+      <div class="profile__list" id="profile-list"></div>
+      <div class="profile__footer-deco">
+        <span>🌿</span>
+        <span>🦎</span>
+        <span>🌿</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE CARTE ==================== -->
+  <section class="page page--map hidden" id="page-map">
+    <button class="map__replay-teaser" id="btn-replay-teaser" aria-label="Revoir le teaser">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      Teaser
+    </button>
+    <div class="map-container" id="map-container">
+      <div class="map__wrapper" id="map-wrapper">
+        <div class="map__inner" id="map-inner">
+          <img src="assets/img/carte/New_Map.svg?v=5" alt="Carte du parcours" class="map__image" id="map-image">
+          <div class="map__user-position" id="user-position"></div>
+          <div class="map__poi-markers" id="poi-markers"></div>
+        </div>
+      </div>
+    </div>
+    <div class="tuffy-conseil tuffy-conseil--map">
+      <img src="assets/img/mascotte/mascotte_sourire.png" alt="Tuffy" class="tuffy-conseil__img">
+      <div class="tuffy-conseil__text">
+        <strong>LE CONSEIL DE TUFFY</strong>
+        <p>"Clique sur un point d'intérêt pour en savoir plus !"</p>
+      </div>
+      <span class="tuffy-conseil__deco">🌿</span>
+    </div>
+  </section>
+
+  <!-- ==================== TEASER VIDEO OVERLAY ==================== -->
+  <div class="teaser-overlay hidden" id="teaser-overlay">
+    <div class="teaser__content">
+      <div class="teaser__video-wrapper">
+        <video id="teaser-video" playsinline webkit-playsinline preload="metadata">
+          <source src="assets/video/teaser_v1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <button class="teaser__skip" id="btn-skip-teaser">
+        Passer
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="13 17 18 12 13 7"/>
+          <polyline points="6 17 11 12 6 7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== MODALE FRAÎCHEUR ==================== -->
+  <div class="modal-fraicheur hidden" id="modal-fraicheur">
+    <div class="modal-fraicheur__backdrop"></div>
+    <div class="modal-fraicheur__card">
+      <img src="assets/img/mascotte/mascotte_triste.png" alt="Tuffy triste" class="modal-fraicheur__mascotte">
+      <h3 class="modal-fraicheur__title">Baignade interdite</h3>
+      <p class="modal-fraicheur__text">
+        La baignade est <strong>strictement interdite</strong> sur le site de la cascade de Sillans-la-Cascade pour des raisons de sécurité et de préservation de l'écosystème.
+      </p>
+      <p class="modal-fraicheur__text">
+        Pour vous baigner, nous vous recommandons :
+      </p>
+      <ul class="modal-fraicheur__alternatives">
+        <li>🌊 La Muie (10 min en voiture)</li>
+        <li>🏊 Le Lac de Sainte-Croix (45 min en voiture)</li>
+      </ul>
+      <button class="btn btn--primary modal-fraicheur__btn" id="btn-close-fraicheur">Choisir un autre profil</button>
+    </div>
+  </div>
+
+  <!-- ==================== MODALE BADGE FÉLICITATIONS ==================== -->
+  <div class="modal-badge hidden" id="modal-badge">
+    <div class="modal-badge__backdrop"></div>
+    <div class="modal-badge__card">
+      <div class="modal-badge__confetti">🎉</div>
+      <img src="assets/img/mascotte/mascotte_saut de joie.png" alt="Tuffy content" class="modal-badge__mascotte">
+      <h3 class="modal-badge__title">Félicitations !</h3>
+      <div class="modal-badge__badge">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="#AECB55">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        <span>Acteur & Protecteur du site</span>
+      </div>
+      <p class="modal-badge__text">Tu as exploré les 8 points d'intérêt du parcours ! Merci d'avoir pris le temps de découvrir et protéger ce site exceptionnel.</p>
+      <button class="btn btn--primary modal-badge__btn" id="btn-close-badge">Continuer l'aventure</button>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE POINT D'INTÉRÊT ==================== -->
+  <section class="page page--poi hidden" id="page-poi">
+    <div class="poi">
+      <div class="poi__hero" id="poi-hero">
+        <img src="" alt="" class="poi__hero-img" id="poi-hero-img">
+        <button class="poi__back" id="btn-poi-back" aria-label="Retour">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+      </div>
+      <div class="poi__content">
+        <h2 class="poi__title" id="poi-title"></h2>
+        <p class="poi__location">Sillans-la-Cascade, Var</p>
+
+        <div class="poi__profile-row">
+          <div class="poi__profile-badge" id="poi-profile-badge"></div>
+          <button class="poi__profile-change" id="btn-change-profile" aria-label="Changer de profil">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+              <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+            Changer profil
+          </button>
+        </div>
+
+        <div class="poi__audio-player hidden" id="poi-audio-player">
+          <div class="poi__audio-icon" id="poi-audio-play-btn">
+            <svg class="poi__audio-icon-play" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg class="poi__audio-icon-pause hidden" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+          </div>
+          <div class="poi__audio-info">
+            <span class="poi__audio-title" data-i18n="audio_title">Audio guide</span>
+            <div class="poi__audio-progress">
+              <div class="poi__audio-bar" id="poi-audio-bar">
+                <div class="poi__audio-fill" id="poi-audio-fill"></div>
+              </div>
+              <span class="poi__audio-time" id="poi-audio-time">0:00</span>
+            </div>
+          </div>
+          <audio id="poi-audio" preload="metadata"></audio>
+        </div>
+
+        <div class="poi__description" id="poi-description"></div>
+
+        <div class="poi__video-container hidden" id="poi-video-container">
+          <video class="poi__video" id="poi-video" controls preload="none"></video>
+        </div>
+
+        <div class="poi__transcription hidden" id="poi-transcription-container">
+          <p class="poi__transcription-text" id="poi-transcription"></p>
+        </div>
+
+        <div class="tuffy-conseil">
+          <img src="assets/img/mascotte/mascotte_sourire.png" alt="Tuffy" class="tuffy-conseil__img" id="tuffy-poi-img">
+          <div class="tuffy-conseil__text">
+            <strong>LE CONSEIL DE TUFFY</strong>
+            <p id="tuffy-poi-conseil"></p>
+          </div>
+        </div>
+
+        <div class="poi__sensitivity">
+          <div class="poi__sensitivity-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#AECB55">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
+            <span>Sensibilité Écologique</span>
+          </div>
+          <div class="poi__sensitivity-bar">
+            <div class="poi__sensitivity-fill" id="poi-sensitivity-fill"></div>
+          </div>
+          <span class="poi__sensitivity-value" id="poi-sensitivity-value"></span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE CONTENUS ==================== -->
+  <section class="page page--contenus hidden" id="page-contenus">
+    <div class="contenus">
+      <h2 class="contenus__title">Contenus & Histoire</h2>
+
+      <div class="contenus__section">
+        <h3 class="contenus__section-title">Points d'intérêt</h3>
+        <div class="contenus__poi-list" id="contenus-poi-list"></div>
+      </div>
+
+      <div class="contenus__section">
+        <h3 class="contenus__section-title">Anecdotes</h3>
+        <div class="contenus__carousel" id="contenus-anecdotes"></div>
+        <div class="contenus__carousel-dots" id="anecdotes-dots"></div>
+      </div>
+
+      <div class="contenus__section">
+        <h3 class="contenus__section-title">Histoire du village</h3>
+        <div class="contenus__cards" id="contenus-histoire"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE URGENCE ==================== -->
+  <section class="page page--urgence hidden" id="page-urgence">
+    <div class="urgence">
+      <!-- Hero alert banner -->
+      <div class="urgence__hero">
+        <div class="urgence__hero-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="#fff">
+            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+          </svg>
+        </div>
+        <h2 class="urgence__hero-title">En cas de danger</h2>
+        <p class="urgence__hero-text">Restez calme et suivez les consignes ci-dessous</p>
+      </div>
+
+      <!-- Position card -->
+      <div class="urgence__position-card">
+        <div class="urgence__position-header">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4" />
+            <line x1="12" y1="2" x2="12" y2="6" />
+            <line x1="12" y1="18" x2="12" y2="22" />
+            <line x1="2" y1="12" x2="6" y2="12" />
+            <line x1="18" y1="12" x2="22" y2="12" />
+          </svg>
+          <span>MA POSITION</span>
+        </div>
+        <div class="urgence__position-body">
+          <div class="urgence__coords" id="urgence-coords">
+            <span>@ 43.5671° N, 6.1824° E</span>
+          </div>
+          <p class="urgence__position-address" id="urgence-address">Chemin de la Cascade, Sillans-la-Cascade</p>
+        </div>
+        <button class="btn btn--outline btn--full urgence__send-btn" id="btn-send-position">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+          Envoyer ma position par SMS
+        </button>
+      </div>
+
+      <!-- Consignes sections with icon cards -->
+      <div class="urgence__section">
+        <h3 class="urgence__section-title">
+          <span class="urgence__section-icon urgence__section-icon--prevention">🛡️</span>
+          Consignes de prévention
+        </h3>
+        <div class="urgence__grid" id="urgence-prevention"></div>
+      </div>
+
+      <div class="urgence__section">
+        <h3 class="urgence__section-title">
+          <span class="urgence__section-icon urgence__section-icon--urgence">🚨</span>
+          En cas d'urgence
+        </h3>
+        <div class="urgence__steps" id="urgence-consignes"></div>
+      </div>
+
+      <!-- Tuffy conseil -->
+      <div class="tuffy-conseil tuffy-conseil--urgence">
+        <img src="assets/img/mascotte/mascotte_peur.png" alt="Tuffy" class="tuffy-conseil__img">
+        <div class="tuffy-conseil__text">
+          <strong>LE CONSEIL DE TUFFY</strong>
+          <p>"Gardez votre calme. Si vous êtes perdu, restez sur les sentiers balisés et attendez les secours."</p>
+        </div>
+      </div>
+
+      <!-- Spacer for sticky button -->
+      <div style="height:90px"></div>
+    </div>
+    <!-- Bouton sticky urgence -->
+    <div class="urgence__sticky-btn" id="urgence-sticky-btn">
+      <a href="tel:112" class="btn btn--danger btn--full" id="btn-call-emergency">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+        </svg>
+        APPELER LES URGENCES (112)
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE POLITIQUE DE CONFIDENTIALITÉ ==================== -->
+  <section class="page page--privacy hidden" id="page-privacy">
+    <div class="privacy">
+      <h2 class="privacy__title">Politique de confidentialité</h2>
+      <div class="privacy__content">
+        <h3>Données collectées</h3>
+        <p>L'application Bresca fonctionne <strong>entièrement en local</strong> sur votre appareil. Aucune donnée personnelle n'est envoyée vers un serveur distant.</p>
+
+        <h3>Stockage local</h3>
+        <p>Les seules données enregistrées sont stockées localement sur votre navigateur via le LocalStorage :</p>
+        <ul>
+          <li>Votre profil de visite sélectionné</li>
+          <li>Les points d'intérêt que vous avez visités</li>
+          <li>Votre préférence de langue</li>
+          <li>L'état du téléchargement des données</li>
+        </ul>
+        <p>Ces données ne quittent jamais votre appareil et peuvent être supprimées en vidant le cache de votre navigateur.</p>
+
+        <h3>Géolocalisation</h3>
+        <p>Si vous l'autorisez, votre position GPS est utilisée <strong>uniquement pour vous situer sur la carte</strong> et pour la fonctionnalité d'urgence. Votre position n'est jamais enregistrée ni transmise, sauf si vous envoyez manuellement un SMS d'urgence.</p>
+
+        <h3>Cookies</h3>
+        <p>L'application n'utilise aucun cookie et aucun traceur analytique.</p>
+
+        <h3>Contact</h3>
+        <p>Pour toute question relative à la protection de vos données, veuillez contacter le Département du Var.</p>
+      </div>
+      <button class="btn btn--primary" id="btn-privacy-back">Retour</button>
+    </div>
+  </section>
+
+  <!-- ==================== PAGE CRÉDITS ==================== -->
+  <section class="page page--credits hidden" id="page-credits">
+    <div class="credits">
+      <h2 class="credits__title">Crédits</h2>
+      <div class="credits__content">
+        <p><strong>Application Bresca</strong></p>
+        <p>Développée dans le cadre du BUT MMI — SAE S4</p>
+        <p>Département du Var</p>
+        <br>
+        <p><strong>Conception & Développement</strong></p>
+        <p>Équipe projet MMI</p>
+        <br>
+        <p><strong>Mascotte Tuffy</strong></p>
+        <p>Illustration originale</p>
+        <br>
+        <p><strong>Cartographie</strong></p>
+        <p>Carte du parcours de Sillans-la-Cascade</p>
+      </div>
+      <button class="btn btn--secondary" id="btn-credits-back">Retour</button>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER / TAB BAR ==================== -->
+  <nav class="tabbar" id="tabbar">
+    <button class="tabbar__item active" data-tab="map" id="tab-map">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14 6l-3.75 6.75L4 18l6.75-3.75L14 6zm-1 4a1 1 0 100-2 1 1 0 000 2z" />
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+      </svg>
+      <span>CARTE</span>
+    </button>
+    <button class="tabbar__item" data-tab="contenus" id="tab-contenus">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
+      </svg>
+      <span>HISTOIRE</span>
+    </button>
+    <button class="tabbar__item" data-tab="urgence" id="tab-urgence">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+      </svg>
+      <span>URGENCE</span>
+    </button>
+  </nav>
+
+  <script src="assets/js/app.js?v=9"></script>
+</body>
+
+</html>

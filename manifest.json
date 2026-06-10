@@ -1,0 +1,22 @@
+{
+  "name": "Bresca — Sillans-la-Cascade",
+  "short_name": "Bresca",
+  "description": "Guide interactif de la cascade de Sillans-la-Cascade",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#25564D",
+  "theme_color": "#25564D",
+  "icons": [
+    {
+      "src": "assets/img/logos/Logo_Bresca_Vert.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/logos/Logo_Bresca_Vert.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
